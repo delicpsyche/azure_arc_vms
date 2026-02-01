@@ -10,7 +10,8 @@ param vmNames array
  
 param vnetAddressPrefix string
 param subnetPrefix string
- 
+param rdpSourceIpAddress string = '*' // Your public IP address for RDP access
+
 param arcTenantId string
 param arcSubscriptionId string
 param arcResourceGroup string
@@ -23,6 +24,7 @@ module nsg './modules/nsg.bicep' = {
   name: 'nsgDeploy'
   params: {
     location: location
+    rdpSourceIpAddress: rdpSourceIpAddress
   }
 }
  

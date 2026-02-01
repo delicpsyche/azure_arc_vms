@@ -1,5 +1,6 @@
 param location string
- 
+param rdpSourceIpAddress string = '*' // Default to allow all, set to your public IP for security
+
 resource nsg 'Microsoft.Network/networkSecurityGroups@2023-11-01' = {
   name: 'prod-ci-dc02-nsg'
   location: location
@@ -14,7 +15,7 @@ resource nsg 'Microsoft.Network/networkSecurityGroups@2023-11-01' = {
           protocol: 'Tcp'
           sourcePortRange: '*'
           destinationPortRange: '3389'
-          sourceAddressPrefix: '*'
+          sourceAddressPrefix: rdpSourceIpAddress
           destinationAddressPrefix: '*'
         }
       }

@@ -54,11 +54,10 @@ Unregister-ScheduledTask -TaskName "LogonScript" -Confirm:$False
 Stop-Process -Name powershell -Force
 '@ > C:\tmp\LogonScript.ps1
 
-# Creating LogonScript Windows Scheduled Task
-$Trigger = New-ScheduledTaskTrigger -AtLogOn
+# Creating Arc Onboarding Scheduled Task - runs automatically after 30 seconds
+$Trigger = New-ScheduledTaskTrigger -Once -At (Get-Date).AddSeconds(300)
 $Action = New-ScheduledTaskAction -Execute "PowerShell.exe" -Argument 'C:\tmp\LogonScript.ps1'
-Register-ScheduledTask -TaskName "LogonScript" -Trigger $Trigger -User "${adminUsername}" -Action $Action -RunLevel "Highest" -Force
-Start-ScheduledTask -TaskName "LogonScript"
+Register-ScheduledTask -TaskName "LogonScript" -Trigger $Trigger -User "SYSTEM" -Action $Action -RunLevel "Highest" -Force
 
 # Disabling Windows Server Manager Scheduled Task
 Get-ScheduledTask -TaskName ServerManager | Disable-ScheduledTask

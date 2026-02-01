@@ -11,12 +11,14 @@ param vmNames = [
   'prod-ci-dc02-win02'
 ]
  
-param adminUsername = 'Administrator'
+param adminUsername = 'windcadmin01'
 param adminPassword = ''  // fill the password
  
 param vnetAddressPrefix = '172.16.10.0/24'
 param subnetPrefix = '172.16.10.0/26'
- 
+
+// Your public IP address - use '*' . curl ifconfig.me to get IP
+param rdpSourceIpAddress = ''  // Example: '203.0.113.0/32' or '203.0.113.45'
 
 // Make sure Arc SP has been granged the necessary role for the RG scope
 
