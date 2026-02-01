@@ -47,6 +47,16 @@ az role assignment create  --assignee '<SPN App/Client ID>'  --role "Azure Conne
 ## Modify the main.bicepparm
 Modify the values with your custom attributes
 
+### NSG update for PIP
+```powershell
+# Get your IP
+$myIp = (Invoke-RestMethod https://ifconfig.me/ip).Trim()
+Write-Host "Your IP: $myIp"
+
+# Update the bicepparam file automatically
+(Get-Content main.bicepparam) -replace "param rdpSourceIpAddress = ''", "param rdpSourceIpAddress = '$myIp/32'" | Set-Content main.bicepparam
+```
+
 
 ## Deployment
 ```powershell
