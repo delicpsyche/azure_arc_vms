@@ -96,7 +96,7 @@ resource arcExt 'Microsoft.Compute/virtualMachines/extensions@2023-09-01' = {
     autoUpgradeMinorVersion: true
     settings: {
       fileUris: [
-        'https://raw.githubusercontent.com/delicpsyche/azure_arc_vms/main/scripts/install_arc_agent.ps1'
+        'https://raw.githubusercontent.com/delicpsyche/azure_arc_vms/refs/heads/main/scripts/install_arc_agent.ps1'
       ]
     }
     protectedSettings: {
